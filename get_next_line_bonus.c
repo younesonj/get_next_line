@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: younajja <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 21:21:22 by younajja          #+#    #+#             */
-/*   Updated: 2023/12/12 21:29:45 by younajja         ###   ########.fr       */
+/*   Created: 2023/12/12 21:02:35 by younajja          #+#    #+#             */
+/*   Updated: 2023/12/12 21:15:37 by younajja         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_extract(int fd, char *line)
 {
@@ -29,7 +29,7 @@ char	*ft_extract(int fd, char *line)
 			free(buff);
 			return (NULL);
 		}
-		buff [rd] = '\0';
+		buff[rd] = '\0';
 		line = ft_strjoin(line, buff);
 	}
 	free(buff);
@@ -77,7 +77,7 @@ char	*ft_cut_last(char *line)
 		return (NULL);
 	}
 	str = (char *)malloc(ft_strlen(line) - i + 1);
-	if (! str)
+	if (!str)
 		return (NULL);
 	i++;
 	j = 0;
@@ -90,16 +90,16 @@ char	*ft_cut_last(char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	*line;
+	static char	*line[1024];
 	char		*next;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = ft_extract(fd, line);
-	if (!line)
+	line[fd] = ft_extract(fd, line[fd]);
+	if (!line[fd])
 		return (NULL);
-	next = ft_cut_first(line);
-	line = ft_cut_last(line);
+	next = ft_cut_first(line[fd]);
+	line[fd] = ft_cut_last(line[fd]);
 	return (next);
 }
 // int main ()
