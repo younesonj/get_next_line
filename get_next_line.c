@@ -102,23 +102,3 @@ char	*get_next_line(int fd)
 	line = ft_cut_last(line);
 	return (next);
 }
-int main ()
-{
-	int fd = open ("t.txt", O_RDONLY);
-
-
-	char *str;
-	char *s2;
-	str = get_next_line(fd);
-
-	while (str)
-	{
-		printf("********************\n");
-		printf("1 >>> %s\n", str);
-
-
-		free(str);
-		str = get_next_line(fd);
-
-	}
-}
