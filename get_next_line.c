@@ -18,7 +18,7 @@ char	*ft_extract(int fd, char *line)
 	ssize_t	rd;
 
 	rd = 1;
-	buff = (char *)malloc(BUFFER_SIZE + 1);
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
 	while (!ft_strchr(line, '\n') && rd > 0)
@@ -102,23 +102,23 @@ char	*get_next_line(int fd)
 	line = ft_cut_last(line);
 	return (next);
 }
-// int main ()
-// {
-// 	int fd = open ("text.txt", O_RDONLY);
-// 	int fd2 = open ("text2.txt", O_RDONLY);
+int main ()
+{
+	int fd = open ("t.txt", O_RDONLY);
 
-// 	char *str;
-// 	char *s2;
-// 	str = get_next_line(fd);
-// 	s2 = get_next_line(fd2);
-// 	while (str || s2)
-// 	{
-// 		printf("********************\n");
-// 		printf("1 >>> %s\n", str);
-// 		printf("2 >>>>%s\n", s2);
-// 		free(s2);
-// 		free(str);
-// 		str = get_next_line(fd);
-// 		s2 = get_next_line(fd2);
-// 	}
-// }
+
+	char *str;
+	char *s2;
+	str = get_next_line(fd);
+
+	while (str)
+	{
+		printf("********************\n");
+		printf("1 >>> %s\n", str);
+
+
+		free(str);
+		str = get_next_line(fd);
+
+	}
+}

@@ -18,7 +18,7 @@ char	*ft_extract(int fd, char *line)
 	ssize_t	rd;
 
 	rd = 1;
-	buff = (char *)malloc(BUFFER_SIZE + 1);
+	buff = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
 	while (!ft_strchr(line, '\n') && rd > 0)
